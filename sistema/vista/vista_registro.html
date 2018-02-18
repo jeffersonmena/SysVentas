@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>registrarse</title>
+	<link rel="stylesheet" type="text/css" href="../materialize/css/materialize.css">
+</head>
+<body>
+	<form action="controladorlogin.php" methd="POST">
+		 <input type="hidden" name="id_login" id="id_login" required="required" class="form-control col-md-7 col-xs-12">
+		<label>Nombre</label><input type="text" name="nombre">
+		<label>Usuario</label><input type="text" name="usuario">
+		<label>Clave</label><input type="password" name="clave">
+		<label>Estado</label><select type="text" name="estado" class="form-control col-md-7 col-xs-12">
+                    <option value="activo">
+                      Activo
+                    </option>
+                    <option value="baja">
+                      Baja
+                    </option>
+        </select>
+         <input id="BtnGuardar" type="submit" class="btn btn-success" value="Guardar">
+                <button class="btn btn-primary" type="button" id="CancelarCat">Cancelar</button>
+	</form>
+
+</body>
+</html>
