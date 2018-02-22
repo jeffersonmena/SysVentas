@@ -1,28 +1,37 @@
 <?php
 //include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
-	/*Inicia validacion del lado del servidor*/
+	/*Inicia validacion del lado del servidor
+codigo
+cantidad
+detalle
+precio
+total*/
 	if (empty($_POST['codigo'])) {
            $errors[] = "Código vacío";
-        } else if (empty($_POST['nombre'])){
-			$errors[] = "Nombre del producto vacío";
-		} else if ($_POST['estado']==""){
-			$errors[] = "Selecciona el estado del producto";
+        } else if (empty($_POST['cantidad'])){
+			$errors[] = "cantidad del producto vacío";
+		} else if (empty($_POST['detalle']){
+			$errors[] = "detalle del producto vacio";
 		} else if (empty($_POST['precio'])){
-			$errors[] = "Precio de venta vacío";
+			$errors[] = "Precio de compra vacío";
+		}else if (empty($_POST['total'])){
+			$errors[] = "total de compra vacío";
 		} else if (
 			!empty($_POST['codigo']) &&
-			!empty($_POST['nombre']) &&
-			$_POST['estado']!="" &&
-			!empty($_POST['precio'])
+			!empty($_POST['cantidad']) &&
+			!empty($_POST['detalle']) &&
+			!empty($_POST['precio']) &&
+			!empty($_POST['total']) 
+
 		){
 		/* Connect To Database*/
 		//require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
-		require_once ("../modelo/conexion.php");//Contiene funcion que conecta a la base de datos
+		require_once("../modelo/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
 		$codigo=mysqli_real_escape_string($conexion,(strip_tags($_POST["codigo"],ENT_QUOTES)));
-		$nombre=mysqli_real_escape_string($conexion,(strip_tags($_POST["nombre"],ENT_QUOTES)));
-		$estado=intval($_POST['estado']);
-		$precio_venta=floatval($_POST['precio']);
+		$cantidad=mysqli_real_escape_string($conexion,(strip_tags($_POST["cantidad"],ENT_QUOTES)));
+		$detalle=mysqli_real_escape_string($conexion,(strip_tags($_POST["detalle"],ENT_QUOTES)));
+		$precio_compra=floatval($_POST['precio']);
 		$date_added=date("Y-m-d H:i:s");
 		$sql="INSERT INTO products (codigo_producto, nombre_producto, status_producto, date_added, precio_producto) VALUES ('$codigo','$nombre','$estado','$date_added','$precio_venta')";
 		$query_new_insert = mysqli_query($conexion,$sql);

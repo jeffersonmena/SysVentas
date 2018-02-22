@@ -1,5 +1,4 @@
-<?php session_start(); 
-echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
+<?php session_start(); ?>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +51,7 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>J</b>M</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SysVentas
-</b>Credicell</span>
+      <span class="logo-lg"><b>SysVentas</b>Credicell</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -265,15 +263,14 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo "".$_SESSION['u_usu']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo "".$_SESSION['u_usu']; ?> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -321,7 +318,7 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo "".$_SESSION['u_usu']; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -329,10 +326,12 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                <i class="fa fa-search">                
+                </i>
+              </button>
+            </span>
         </div>
       </form>
       <!-- /.search form -->
@@ -521,131 +520,114 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
         <small>Facturas de Compras</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Compras</li>
+        <li>
+          <a href="#">
+            <i class="fa fa-dashboard">              
+            </i> Home
+          </a>
+        </li>
+        <li class="active">Compras
+        </li>
       </ol>
     </section>
-
     <!-- Main content -->
-    <section class="content">
-              <div class="box box-primary">
+    <section class="content">  
+          <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Factura</h3>
+              <h3 class="box-title">Factura
+              </h3>
             </div>
-            <!-- /.box-header -->
             <!-- form start -->
+            <?php 
+            include("../modal/registrar_producto.php");
+            ?>
             <form role="form">
               <div class="box-body">
-                <div class="row">
-                    <div class="col-xs-4">                
-                      <label for="proveedores">Proveedores</label>
-                      <select type="text" id="proveedores" name="estado" class="form-control col-md-7 col-xs-12">
-                          <option value="activo">
-                            proveedor 1
-                          </option>
-                          <option value="baja">
-                            proveedor 2
-                          </option>
-                      </select>
-                   </div>
-                    <div class="col-xs-4">
-                      <label>Fecha Compra</label>
-                      <div class="input-group date">
-                        <div class="input-group-addon">
-                          <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="text" class="form-control pull-right" id="datepicker">
-                      </div>
-                    </div>  
-                    <div class="col-xs-4">
-                      <label for="factura">N° de Factura</label>
-                      <input type="text" id="factura" class="form-control" placeholder="Factura">
-                    </div>                                     
-                </div>
-                
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto">
-             <span class="glyphicon glyphicon-plus"></span> Nuevo producto
-            </button>
 
-              <!--Ingresa los productos de compra  -->            
-
-                <div class="modal fade" id="nuevoProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog modal-lg"  role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar nuevo producto</h4>
-                    </div>
-                    
-
-                  <form class="form-horizontal" method="post" id="guardar_producto" name="guardar_producto">
-                    <div id="resultados_ajax_productos"></div>
-                    <div class="modal-body">
-
-                        <div class="col-xs-1">
-                          <label for="codigo" >Código</label>
-                          <input type="text" class="form-control cantidades" id="codigo" name="codigo" placeholder="#" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" required>    
-                        </div> 
-                        <div class="col-xs-2"><!--Falta agregar Ajax "JavaScript" Modelo Controlador y crear table in bd-->
-                          <label for="cantidad" >Cantidad</label>
-                          <input type="text" class="form-control cantidades" id="cantidad" placeholder="Cantidad" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'">                      
-                        </div>                     
-                         <!-- <div class="form-group"><!-Falta cambiar Ajax "JavaScript" Modelo Controlador y crear table in bd -
-                          <label for="nombre" class="col-sm-3 control-label">Nombre</label>
-                          <div class="col-sm-8">
-                            <textarea class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto" required maxlength="255" ></textarea>                        
-                          </div>
-                          </div> -->
-
-                        <div class="col-xs-5">
-                              <label for="detalle" >Detalle</label>
-                              <input type="text" class="form-control" id="detalle" placeholder="Detalle">
-                        </div>                     
-                        <div class="col-xs-2">
-                          <label for="precio">Precio</label>
-                          <input type="text" class="form-control cantidades" id="precio" placeholder="Precio" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'">                    
-                        </div> 
-                        <div class="col-xs-2">
-                          <label for="total">Total</label>
-                          <input type="text" class="form-control cantidades" id="total" placeholder="Total" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'">                      
-                        </div> 
-
-                          <!--<div class="form-group"> Cambiar estos datos 
-                          <label for="estado" class="col-sm-3 control-label">Estado</label>
-                          <div class="col-sm-8">
-                           <select class="form-control" id="estado" name="estado" required>
-                            <option value="">-- Selecciona estado --</option>
-                            <option value="1" selected>Activo</option>
-                            <option value="0">Inactivo</option>
-                            </select>
-                          </div>
-                          </div>
-                          <div class="form-group">
-                          <label for="precio" class="col-sm-3 control-label">Precio</label>
-                          <div class="col-sm-8">
-                            <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio de venta del producto" required pattern="^[0-9]{1,5}(\.[0-9]{0,2})?$" title="Ingresa sólo números con 0 ó 2 decimales" maxlength="8">
-                          </div>
-                          </div> -->
-                  
-                     <div class="modal-footer">
-                       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary" id="guardar_datos">Guardar datos</button>
-                      </div>
-                        </div>
-                    </form>
-                 
-                  </div>
-                  </div>
-                </div><!--Termina codigo de ingreso de productos de compra -->
-                                            
-                </div>               
-              </div>
+                <div class="row"> 
+                  <div class="col-sm-4 right"> 
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto">
+                      <span class="glyphicon glyphicon-plus"></span> Nuevo producto
+                    </button>
+                  </div>                  
+                </div>                                            
+              </div>                 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <p>Recuerde que el producto a ingresar debe tener CATEGORIA y </p>
+                <button type="submit" class="btn btn-primary">Submit
+                </button>
               </div>
             </form>
           </div>    
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4><i class='glyphicon glyphicon-edit'></i> Nueva Factura</h4>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" role="form" id="datos_factura">
+            <div class="form-group row">
+              <label for="nombre_cliente" class="col-md-1 control-label">Cliente</label>
+              <div class="col-md-3">
+                <input type="text" class="form-control input-sm" id="nombre_cliente" placeholder="Selecciona un cliente" required>
+                <input id="id_cliente" type='hidden'> 
+              </div>
+              <label for="tel1" class="col-md-1 control-label">Teléfono</label>
+                  <div class="col-md-2">
+                    <input type="text" class="form-control input-sm" id="tel1" placeholder="Teléfono" readonly>
+                  </div>
+              <label for="mail" class="col-md-1 control-label">Email</label>
+                  <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" id="mail" placeholder="Email" readonly>
+                  </div>
+             </div>
+            <div class="form-group row">
+              <label for="empresa" class="col-md-1 control-label">Vendedor</label>
+              <div class="col-md-3">
+                <select class="form-control input-sm" id="id_vendedor">
+                  <?php
+                    $sql_vendedor=mysqli_query($con,"select * from persona order by nombre");
+                    while ($rw=mysqli_fetch_array($sql_vendedor)){
+                      $id_vendedor=$rw["user_id"];
+                      $nombre_vendedor=$rw["firstname"]." ".$rw["lastname"];
+                      if ($id_vendedor==$_SESSION['user_id']){
+                        $selected="selected";
+                      } else {
+                        $selected="";
+                      }
+                      ?>
+                      <option value="<?php echo $id_vendedor?>" <?php echo $selected;?>><?php echo $nombre_vendedor?></option>
+                      <?php
+                    }
+                  ?>
+                </select>
+              </div>
+              <label for="tel2" class="col-md-1 control-label">Fecha</label>
+              <div class="col-md-2">
+                <input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
+              </div>
+            </div>            
+            <div class="col-md-12">
+              <div class="pull-right">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto">
+                 <span class="glyphicon glyphicon-plus"></span> Nuevo producto
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoCliente">
+                 <span class="glyphicon glyphicon-user"></span> Nuevo cliente
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                 <span class="glyphicon glyphicon-search"></span> Agregar productos
+                </button>
+                <button type="submit" class="btn btn-default">
+                  <span class="glyphicon glyphicon-print"></span> Guardar
+                </button>
+              </div>  
+            </div>
+          </form>           
+          <div id="resultados" class='col-md-12' style="margin-top:10px"></div><!-- Carga los datos ajax -->      
+        </div>
+      </div>    
     </section>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -891,6 +873,7 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script src="../../plugins/number/jquery.inputmask.bundle.js"></script>
+
 <script>
 
   $(function () {
@@ -900,7 +883,29 @@ echo 'su nombre de usuario es:'.$_SESSION['u_usu'];	?>
     })
      })
 </script>
-    <script>
+<script >
+  $( "#guardar_producto" ).submit(function( event ) {
+  $('#guardar_datos').attr("disabled", true);
+  
+ var parametros = $(this).serialize();
+   $.ajax({
+      type: "POST",
+      url: "controlador/controladorcompras.php",
+      data: parametros,
+       beforeSend: function(objeto){
+        $("#resultados_ajax_productos").html("Mensaje: Cargando...");
+        },
+      success: function(datos){
+      $("#resultados_ajax_productos").html(datos);
+      $('#guardar_datos').attr("disabled", false);
+      load(1);
+      }
+  });
+  event.preventDefault();
+ });
+</script>
+
+ <script>
    $(document).ready(function(){
    $(".cantidades").inputmask();
       });
