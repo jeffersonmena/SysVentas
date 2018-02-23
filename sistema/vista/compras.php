@@ -40,6 +40,7 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -539,9 +540,11 @@
             </div>
             <!-- form start -->
             <?php 
-            include("../modal/registrar_producto.php");
+            require("../modal/registrar_producto.php");
             ?>
-            <form role="form">
+
+            
+
               <div class="box-body">
 
                 <div class="row"> 
@@ -553,11 +556,15 @@
                 </div>                                            
               </div>                 
               <div class="box-footer">
-                <p>Recuerde que el producto a ingresar debe tener CATEGORIA y </p>
-                <button type="submit" class="btn btn-primary">Submit
-                </button>
+
+                <p style="font-family: Times New Roman, Times, serif; font-size:x-small;">Si el producto es de un nuevo PROVEEDOR u otra CATEGORIA deberà agregar nuevo PROVEEDOR Y CATEGORIA si es necesario</p>
+
+                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Nueva Categoria</a>
+
+                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Nuevo Proveedor</a> 
+
               </div>
-            </form>
+
           </div>    
       <div class="panel panel-info">
         <div class="panel-heading">
@@ -595,7 +602,7 @@
                         $selected="";
                       }
                       ?>
-                      <option value="<?php echo $id_vendedor?>" <?php echo $selected;?>><?php echo $nombre_vendedor?></option>
+                      <option value="<?php echo $id_vendedor?>" <?php echo $selected;?>> <?php echo $nombre_vendedor?></option>
                       <?php
                     }
                   ?>
@@ -873,38 +880,21 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script src="../../plugins/number/jquery.inputmask.bundle.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script>
 
   $(function () {
         //Date picker
     $('#datepicker').datepicker({
       autoclose: true
-    })
-     })
-</script>
-<script >
-  $( "#guardar_producto" ).submit(function( event ) {
-  $('#guardar_datos').attr("disabled", true);
-  
- var parametros = $(this).serialize();
-   $.ajax({
-      type: "POST",
-      url: "controlador/controladorcompras.php",
-      data: parametros,
-       beforeSend: function(objeto){
-        $("#resultados_ajax_productos").html("Mensaje: Cargando...");
-        },
-      success: function(datos){
-      $("#resultados_ajax_productos").html(datos);
-      $('#guardar_datos').attr("disabled", false);
-      load(1);
-      }
-  });
-  event.preventDefault();
- });
+    });
+     });
 </script>
 
+<script type="text/javascript" src="../script/compras.js"></script>
  <script>
    $(document).ready(function(){
    $(".cantidades").inputmask();
