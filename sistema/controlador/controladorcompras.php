@@ -4,36 +4,60 @@
 codigo
 cantidad
 detalle
-precio
-total*/
-	if (empty($_POST['codigo'])) {
-           $errors[] = "Código vacío";
-        } else if (empty($_POST['cantidad'])){
-			$errors[] = "cantidad del producto vacío";
-		} else if (empty($_POST['detalle']){
-			$errors[] = "detalle del producto vacio";
-		} else if (empty($_POST['precio'])){
-			$errors[] = "Precio de compra vacío";
-		}else if (empty($_POST['total'])){
-			$errors[] = "total de compra vacío";
+costo
+total
+proveedor
+fechaCompra
+Nfactura
+categoria
+marca
+modelo
+serie
+color
+*/
+	if (empty($_POST['categoria'])) {
+           $errors[] = "categoria vacío";
+   		} else if (empty($_POST['modelo'])){
+			$errors[] = "modelo del producto vacio";
+        } else if (empty($_POST['fechaCompra'])){
+			$errors[] = "fechaCompra del producto vacío";
+		} else if (empty($_POST['Nfactura'])){
+			$errors[] = "Nfactura del producto vacio";
+		} else if (empty($_POST['marca'])){
+			$errors[] = "marca del producto vacio";
+		} else if (empty($_POST['proveedor'])){
+			$errors[] = "proveedor del producto vacio";	
+		} else if (empty($_POST['serie'])){
+			$errors[] = "serie del producto vacio";
+		} else if (empty($_POST['color'])){
+			$errors[] = "color del producto vacio";			
+		} else if (empty($_POST['costo'])){
+			$errors[] = "costo de compra vacío";
 		} else if (
-			!empty($_POST['codigo']) &&
-			!empty($_POST['cantidad']) &&
-			!empty($_POST['detalle']) &&
-			!empty($_POST['precio']) &&
-			!empty($_POST['total']) 
-
+			!empty($_POST['proveedor']) &&
+			!empty($_POST['categoria']) &&
+			!empty($_POST['fechaCompra']) &&
+			!empty($_POST['Nfactura']) &&
+			!empty($_POST['marca']) &&
+			!empty($_POST['modelo']) &&
+			!empty($_POST['serie']) &&
+			!empty($_POST['color']) &&
+			!empty($_POST['costo']) 
 		){
 		/* Connect To Database*/
 		//require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
-		require_once("../modelo/conexion.php");//Contiene funcion que conecta a la base de datos
+		include("../modelo/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
-		$codigo=mysqli_real_escape_string($conexion,(strip_tags($_POST["codigo"],ENT_QUOTES)));
-		$cantidad=mysqli_real_escape_string($conexion,(strip_tags($_POST["cantidad"],ENT_QUOTES)));
-		$detalle=mysqli_real_escape_string($conexion,(strip_tags($_POST["detalle"],ENT_QUOTES)));
-		$precio_compra=floatval($_POST['precio']);
-		$date_added=date("Y-m-d H:i:s");
-		$sql="INSERT INTO products (codigo_producto, nombre_producto, status_producto, date_added, precio_producto) VALUES ('$codigo','$nombre','$estado','$date_added','$precio_venta')";
+		$marca=mysqli_real_escape_string($conexion,(strip_tags($_POST["marca"],ENT_QUOTES)));
+		$modelo=mysqli_real_escape_string($conexion,(strip_tags($_POST["modelo"],ENT_QUOTES)));
+		$serie=mysqli_real_escape_string($conexion,(strip_tags($_POST["serie"],ENT_QUOTES)));
+		$color=mysqli_real_escape_string($conexion,(strip_tags($_POST["color"],ENT_QUOTES)));
+		$costo=floatval($_POST['costo']);
+		$Nfactura=mysqli_real_escape_string($conexion,(strip_tags($_POST["Nfactura"],ENT_QUOTES)));		
+		$fechaCompra=date("Y-m-d H:i:s");		
+		$id_proveedor=mysqli_real_escape_string($conexion,(strip_tags($_POST["proveedor"],ENT_QUOTES)));
+		$id_categoria=mysqli_real_escape_string($conexion,(strip_tags($_POST["categoria"],ENT_QUOTES)));	
+		$sql="INSERT INTO producto (marca, modelo, serie, color, costo, nro_factura, fecha_compra, id_proveedor, id_categoria) VALUES ('$marca','$modelo','$serie','$color','$costo',' $Nfactura ',' $fechaCompra ',' $id_proveedor ',' $id_categoria ')";
 		$query_new_insert = mysqli_query($conexion,$sql);
 			if ($query_new_insert){
 				$messages[] = "Producto ha sido ingresado satisfactoriamente.";
