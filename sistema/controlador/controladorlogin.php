@@ -24,9 +24,9 @@ $validar = $conexion->query("SELECT * FROM login WHERE usuario='$usu' AND clave=
 if ($result = mysqli_fetch_array($validar)) {
 //	$query=$conexion->query("SELECT nombre FROM login WHERE usuario='$usu' AND clave='$pwd'");
 	$_SESSION['u_usu'] = $usu;
-	header("location: ../vista/inicio.html");
+	header("location: ../vista/compras.php");
 }else{
-	header("location: ../index.php");
+	header("location: ../login.php");
 }
 
 
