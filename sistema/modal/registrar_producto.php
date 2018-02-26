@@ -1,8 +1,4 @@
-<?php
- include('../modelo/conexion.php');
- if (isset($conexion)) {
-   ?>
-             <!--Ingresa los productos de compra  -->
+        <!--Ingresa los productos de compra  -->
               <div class="modal fade" id="nuevoProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog modal-lg"  role="document">
                   <div class="modal-content">
@@ -24,7 +20,7 @@
                       <label>Proveedores</label>
                       <select  name="proveedor" class="form-control col-md-7 col-xs-12">
                         <?php
-                     include('../modelo/conexion.php');   
+                     include('modelo/conexion.php');   
                     $sql_proveedor=mysqli_query($conexion,"SELECT nombres,id_proveedor FROM proveedor , persona_rs WHERE proveedor.id_persona = persona_rs.id_persona");
                     while ($rw=mysqli_fetch_array($sql_proveedor)){
                       $id_proveedor=$rw["id_proveedor"];
@@ -62,7 +58,7 @@
                           <label for="categoria">Categoria</label>
                           <select type="text" id="categoria" name="categoria" class="form-control col-md-7 col-xs-12">
                           <?php
-                            include('../modelo/conexion.php');
+                            include('modelo/conexion.php');
                             $sql_categoria=mysqli_query($conexion,"SELECT * FROM categoria");
                             while ($rw=mysqli_fetch_array($sql_categoria)){
                             $id_categoria=$rw["id_categoria"];
@@ -118,6 +114,3 @@
                 </div>
               </div><!--Termina codigo de ingreso de productos de compra -->
 
-<?php 
-}
- ?>
