@@ -1,20 +1,5 @@
 <?php
-//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
-	/*Inicia validacion del lado del servidor
-codigo
-cantidad
-detalle
-costo
-total
-proveedor
-fechaCompra
-Nfactura
-categoria
-marca
-modelo
-serie
-color
-*/
+
 	if (empty($_POST['categoria'])) {
            $errors[] = "categoria vacío";
    		} else if (empty($_POST['modelo'])){
