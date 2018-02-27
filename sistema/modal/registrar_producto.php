@@ -18,7 +18,7 @@
                       <div class="modal-body row">                
                     <div class="col-xs-4">                
                       <label>Proveedores</label>
-                      <select  name="proveedor" class="form-control col-md-7 col-xs-12">
+                      <select  name="proveedor" id="proveedor" class="form-control col-md-7 col-xs-12">
                         <?php
                      include('modelo/conexion.php');   
                     $sql_proveedor=mysqli_query($conexion,"SELECT nombres,id_proveedor FROM proveedor , persona_rs WHERE proveedor.id_persona = persona_rs.id_persona");
@@ -93,12 +93,12 @@
                           <input type="text" id="serie" name="serie" class="form-control" placeholder="Serie">
                         </div>  
                         <div class="col-xs-4">
-                          <label for="modelo">Color</label>
-                          <input type="text" id="modelo" name="color" class="form-control" placeholder="Color">
+                          <label for="color">Color</label>
+                          <input type="text" id="color" name="color" class="form-control" placeholder="Color">
                         </div>  
                         <div class="col-xs-2">
                           <label for="costo">Costo</label>
-                          <input type="text" class="form-control cantidades" id="costo" name="costo" placeholder="Costo" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" required>                    
+                          <input type="text" class="form-control cantidades" id="costo" name="costo" placeholder="Costo" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" >                    
                         </div>                                                                        
                       </div>
                       <div class="row"> 

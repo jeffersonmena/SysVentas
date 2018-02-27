@@ -24,37 +24,49 @@ if(isset($_SESSION['u_usu'])){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Ingreso de Mercaderia
-        <small>Facturas de Compras</small>
+        Registro de Productos
+        <small>Nuevo Producto</small>
       </h1>
       <ol class="breadcrumb">
         <li>
           <a href="#">
             <i class="fa fa-dashboard">              
-            </i> Home
+            </i> Productos
           </a>
         </li>
-        <li class="active">Compras
+        <li class="active">Registar Producto
         </li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">  
      <?php 
-        include("vista/vista_agregar_producto.html");
+        include("vista/agregar_producto.html");
       ?>
+ 
       <?php
         include("modal/registrar_producto.php");
       ?>
-    </section>
 
+    </section>
+  
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 <?php include("Vista/footer.html") ?>
 </div>
+
+  <script src="../librerias/jquery-3.2.1.min.js"></script>
+<script  src="script/compras.js"></script>
 <!-- ./wrapper -->
 <?php include("../sistema/vista/scripts.html"); ?>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#listar_productos').load('listas/listar_producto.php');
+
+  });
+</script>
 </body>
 </html>
 
